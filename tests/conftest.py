@@ -1,3 +1,4 @@
+import os
 import pytest
 
 
@@ -15,4 +16,7 @@ def dummy_markdown_text():
 
 @pytest.fixture
 def dummy_odt_filename():
-    return 'dummy_file.odt'
+    filename = 'dummy_file.odt'
+    yield filename
+    if os.path.exists(filename):
+        os.remove(filename)
